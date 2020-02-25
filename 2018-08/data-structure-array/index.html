@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/messenger.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/messenger.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/messenger.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/messenger.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="data structure,LeetCode,array," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zrxJuly's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="从今天开始刷LeetCode，目标：每周至少刷一个Coding Question，出一篇data structure学习博文进行总结。Fighting！解出的代码案例也都会在我的GitHub上进行维护。如果觉得对您有帮助，欢迎star or fork~附上GitHub项目地址：https://github.com/zrxJuly/dataStructure。本文首发于我的个人博客：zrxJu">
+<meta name="keywords" content="data structure,LeetCode,array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode之数据结构——数组">
+<meta property="og:url" content="https://zrxjuly.github.io/2018-08/data-structure-array/index.html">
+<meta property="og:site_name" content="zrxJuly&#39;s Blog">
+<meta property="og:description" content="从今天开始刷LeetCode，目标：每周至少刷一个Coding Question，出一篇data structure学习博文进行总结。Fighting！解出的代码案例也都会在我的GitHub上进行维护。如果觉得对您有帮助，欢迎star or fork~附上GitHub项目地址：https://github.com/zrxJuly/dataStructure。本文首发于我的个人博客：zrxJu">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://zrxjuly.github.io/2018-08/data-structure-array/data-structure.jpg">
+<meta property="og:updated_time" content="2020-02-23T14:23:09.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode之数据结构——数组">
+<meta name="twitter:description" content="从今天开始刷LeetCode，目标：每周至少刷一个Coding Question，出一篇data structure学习博文进行总结。Fighting！解出的代码案例也都会在我的GitHub上进行维护。如果觉得对您有帮助，欢迎star or fork~附上GitHub项目地址：https://github.com/zrxJuly/dataStructure。本文首发于我的个人博客：zrxJu">
+<meta name="twitter:image" content="https://zrxjuly.github.io/2018-08/data-structure-array/data-structure.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zrxjuly.github.io/2018-08/data-structure-array/"/>
+
+
+
+
+
+  <title>LeetCode之数据结构——数组 | zrxJuly's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zrxJuly's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一只追求梦想的程序媛</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zrxjuly.github.io/2018-08/data-structure-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrxJuly">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/timg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zrxJuly's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode之数据结构——数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-21T13:00:04+08:00">
+                2018-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018-08/data-structure-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018-08/data-structure-array/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018-08/data-structure-array/data-structure.jpg" alt="data structure picture"> </p>
+<blockquote>
+<p>从今天开始刷LeetCode，目标：每周至少刷一个Coding Question，出一篇data structure学习博文进行总结。Fighting！<br>解出的代码案例也都会在我的<a href="https://github.com/zrxJuly" target="_blank" rel="noopener">GitHub</a>上进行维护。如果觉得对您有帮助，欢迎star or fork~<br>附上GitHub项目地址：<a href="https://github.com/zrxJuly/dataStructure" target="_blank" rel="noopener">https://github.com/zrxJuly/dataStructure</a>。<br>本文首发于我的个人博客：<a href="https://zrxjuly.github.io/">zrxJuly’s Blog</a>，欢迎访问，Let’s study together.</p>
+</blockquote>
+<h2 id="数组简介"><a href="#数组简介" class="headerlink" title="数组简介"></a>数组简介</h2><p>&emsp;&emsp;数组是数据结构中的基本模块之一，因为字符串是由字符数组形成的，所以二者是相似的。<br>数组是一种基本的数据结构，用于按顺序存储元素集合，数组中的每个元素都可以通过数组索引来识别，元素可以随机存取。数组可以有一个或多个维度，<br>&emsp;&emsp; <strong>一维数组</strong>：也叫线性数组。数组具有固定的容量，我们需要在初始化时指定数组的大小。然而这种在初始化时指定数组大小的方法会很不方便甚至可能会造成浪费。</p>
+<a id="more"></a>
+<h3 id="Array-Demo学习"><a href="#Array-Demo学习" class="headerlink" title="Array Demo学习"></a>Array Demo学习</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zrxjuly.ds.arrayandstring.study;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 数组的基本用法.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">arrayTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. Initialize.初始化数组.</span></span><br><span class="line">        <span class="keyword">int</span>[] a0 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line">        <span class="keyword">int</span>[] a1 = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;</span><br><span class="line">        <span class="comment">// 2. Get Length.输出数组长度.</span></span><br><span class="line">        System.out.println(<span class="string">"The size of a1 is: "</span> + a1.length);</span><br><span class="line">        <span class="comment">// 3. Access Element.访问数组元素.</span></span><br><span class="line">        System.out.println(<span class="string">"The first element is: "</span> + a1[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">// 4. Iterate all Elements.遍历所有元素，两个for循环，两种遍历方法.</span></span><br><span class="line">        System.out.print(<span class="string">"[Version 1] The contents of a1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a1.length; ++i) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + a1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.print(<span class="string">"[Version 2] The contents of a1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : a1) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        <span class="comment">// 5. Modify Element.修改指定下标的数组元素.</span></span><br><span class="line">        a1[<span class="number">0</span>] = <span class="number">4</span>;</span><br><span class="line">        <span class="comment">// 6. Sort.对数组进行排序.</span></span><br><span class="line">        Arrays.sort(a1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        arrayTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态数组简介"><a href="#动态数组简介" class="headerlink" title="动态数组简介"></a>动态数组简介</h2><p><strong>动态数组</strong>：是大小可变的随机存取的列表数据结构。大多数编程语言都会提供内置的动态数组。eg：在C++中的vector，Java中的ArrayList。</p>
+<h3 id="Dynamic-Array-Demo-学习"><a href="#Dynamic-Array-Demo-学习" class="headerlink" title="Dynamic Array Demo 学习"></a>Dynamic Array Demo 学习</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zrxjuly.ds.arrayandstring.study;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 动态数组</span></span><br><span class="line"><span class="comment"> *   大小可变的随机存取的列表数据结构.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicArray</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dynamicArray</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 集合初始化.</span></span><br><span class="line">        List&lt;Integer&gt; v0 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; v1;</span><br><span class="line">        <span class="comment">// 声明并赋值数组.</span></span><br><span class="line">        Integer[] a = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">        <span class="comment">// Arrays.asList()方法：将数组转化为List，该方法将数组与列表链接起来，当更新其中一个时，另一个也会更新.</span></span><br><span class="line">        v1 = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(a));</span><br><span class="line">        <span class="comment">// 3. 将v1数组赋值给v2</span></span><br><span class="line">        List&lt;Integer&gt; v2 = v1;                      <span class="comment">// another reference to v1</span></span><br><span class="line">        List&lt;Integer&gt; v3 = <span class="keyword">new</span> ArrayList&lt;&gt;(v1);     <span class="comment">// make an actual copy of v1</span></span><br><span class="line">        <span class="comment">// 3. get length</span></span><br><span class="line">        System.out.println(<span class="string">"The size of v1 is: "</span> + v1.size());;</span><br><span class="line">        <span class="comment">// 4. access element</span></span><br><span class="line">        System.out.println(<span class="string">"The first element in v1 is: "</span> + v1.get(<span class="number">0</span>));</span><br><span class="line">        <span class="comment">// 5. iterate the vector.下面两种方法遍历集合内容.</span></span><br><span class="line">        System.out.print(<span class="string">"[Version 1] The contents of v1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v1.size(); i ++) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + v1.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.print(<span class="string">"[Version 2] The contents of v1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : v1) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        System.out.println();</span><br><span class="line">        <span class="comment">// 6. modify element.修改元素，注意：v1使用Arrays.asList()方法赋值，因此v2中的元素修改后，v1也会修改</span></span><br><span class="line">        v2.set(<span class="number">0</span>, <span class="number">5</span>);       <span class="comment">// modify v2 will actually modify v1</span></span><br><span class="line">        System.out.println(<span class="string">"The first element in v1 is: "</span> + v1.get(<span class="number">0</span>));</span><br><span class="line">        v3.set(<span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"The first element in v1 is: "</span> + v1.get(<span class="number">0</span>));</span><br><span class="line">        <span class="comment">// 7. sort. 对集合进行排序</span></span><br><span class="line">        Collections.sort(v1);</span><br><span class="line">        <span class="comment">// 8. add new element at the end of the vector</span></span><br><span class="line">        v1.add(-<span class="number">1</span>);</span><br><span class="line">        System.out.print(<span class="string">"[Version 2] The contents of v1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : v1) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        v1.add(<span class="number">1</span>, <span class="number">6</span>);</span><br><span class="line">        System.out.print(<span class="string">"[Version 2] The contents of v1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : v1) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        <span class="comment">// 9. delete the last element</span></span><br><span class="line">        v1.remove(v1.size() - <span class="number">1</span>);</span><br><span class="line">        System.out.print(<span class="string">"[Version 2] The contents of v1 are:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> item : v1) &#123;</span><br><span class="line">            System.out.print(<span class="string">" "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        dynamicArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Coding-Question-寻找数组的中心索引"><a href="#Coding-Question-寻找数组的中心索引" class="headerlink" title="Coding Question:寻找数组的中心索引"></a>Coding Question:寻找数组的中心索引</h2><p>该Coding Question是LeetCode上数组模块的第一个编程问题。这里展示了两种解题思路及方法：<br><strong><em>思路一</em></strong><br>目标索引的左侧的数的总和 = 目标索引的右侧的数的总和。<br><strong><em>思路二</em></strong><br>左侧及索引对应的数 的总和+索引对应的数 = 总和-左侧及索引对应的数的总和+索引对应的数。</p>
+<p><strong>详细分析请看代码及注释，或访问：<a href="https://github.com/zrxJuly/dataStructure" target="_blank" rel="noopener">https://github.com/zrxJuly/dataStructure</a></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zrxjuly.ds.arrayandstring.demo;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: zrxJuly</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2018-8-21 17:00:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Desription</span>: Find Pivot Index. 寻找数组的中心索引。</span></span><br><span class="line"><span class="comment"> *   Coding Question:</span></span><br><span class="line"><span class="comment"> *       Given an array of integers nums, write a method that returns the "pivot" index of this array.</span></span><br><span class="line"><span class="comment"> *       We define the pivot index as the index where the sum of the numbers to the left of the index </span></span><br><span class="line"><span class="comment"> *       is equal to the sum of the numbers to the right of the index.</span></span><br><span class="line"><span class="comment"> *       If no such index exists, we should return -1. </span></span><br><span class="line"><span class="comment"> *       If there are multiple pivot indexes, you should return the left-most pivot index.</span></span><br><span class="line"><span class="comment"> *   |-题目：寻找数组的中心索引。</span></span><br><span class="line"><span class="comment"> *       给定一个整数类型的数组，编写一个返回数组中心索引的方法。</span></span><br><span class="line"><span class="comment"> *       数组中心索引的定义：索引左侧的数的总和 = 索引右侧的数的总和。</span></span><br><span class="line"><span class="comment"> *       如果不存在这样的索引，返回-1.</span></span><br><span class="line"><span class="comment"> *       如果存在多个中心索引，应该返回最左侧的中心索引。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FindPivotIndex</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Solution 1.</span></span><br><span class="line"><span class="comment">     * |-思路分析：目标索引的左侧的数的总和 = 目标索引的右侧的数的总和.</span></span><br><span class="line"><span class="comment">     *     数组：[1, 7, 3, 6, 5, 6 ]</span></span><br><span class="line"><span class="comment">     *           |______|  | |___|</span></span><br><span class="line"><span class="comment">     *              |      |   |</span></span><br><span class="line"><span class="comment">     *              A      B   C </span></span><br><span class="line"><span class="comment">     *     假设 A：目标索引左侧的总和，C:目标索引右侧总和，B：目标索引对应的数值.</span></span><br><span class="line"><span class="comment">     *     则 若有：A = C， 符合题意，返回B的索引，否则返回-1.</span></span><br><span class="line"><span class="comment">     * |- 分别声明左侧总和numsLeft 以及 右侧总和numsRight 两个变量，for循环分别遍历两侧元素，最后比较是否相等.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">pivotIndexSolution1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="comment">// 声明左侧变量.</span></span><br><span class="line">            <span class="keyword">int</span> numsLeft = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 声明右侧变量.</span></span><br><span class="line">            <span class="keyword">int</span> numsRight = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 遍历i左侧元素，值相加.</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; i; m++) &#123;</span><br><span class="line">                numsLeft += nums[m];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 遍历i右侧元素，值相加.</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> n = nums.length - <span class="number">1</span>; n &gt; i; n--) &#123;</span><br><span class="line">                numsRight += nums[n];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 若左侧值和右侧值相等，返回i值.</span></span><br><span class="line">            <span class="keyword">if</span> (numsLeft == numsRight) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Solution 2.</span></span><br><span class="line"><span class="comment">     * |-思路分析：左侧及索引对应的数 的总和+索引对应的数 = 总和-左侧及索引对应的数的总和+索引对应的数.</span></span><br><span class="line"><span class="comment">     *   |-下面这样解释更容易理解：</span></span><br><span class="line"><span class="comment">     *     数组：[1, 7, 3, 6, 5, 6 ]</span></span><br><span class="line"><span class="comment">     *           |______|  | |___|</span></span><br><span class="line"><span class="comment">     *              |      |   |</span></span><br><span class="line"><span class="comment">     *              A      B   C </span></span><br><span class="line"><span class="comment">     *     假设 A：目标索引左侧的总和，C:目标索引右侧总和，B：目标索引对应的数值.</span></span><br><span class="line"><span class="comment">     *     则 若有：A + B = B + C，即 A = C， 符合题意，返回B的索引，否则返回-1.</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     *   |-下面代码中是这样判断的：</span></span><br><span class="line"><span class="comment">     *     分别声明两个变量：数组总和sum 以及 数组左侧总和 lsum</span></span><br><span class="line"><span class="comment">     *     先用for循环遍历得出数组总和sum，然后再写一个for循环，在该循环内判断左侧总和lsum是否和右侧总和相等。</span></span><br><span class="line"><span class="comment">     *     (注：本例中lsum包含了目标索引的值，因此在判断的时候右侧总和也必须加上目标索引的值)</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">pivotIndexSolution2</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="comment">// 数组总和.</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 数组左侧数的总和.</span></span><br><span class="line">        <span class="keyword">int</span> lsum = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 得出数组总和.</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x:nums)&#123;</span><br><span class="line">            sum+=x;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            lsum += nums[i];</span><br><span class="line">            <span class="comment">// 判断：左侧总和 == 右侧总和</span></span><br><span class="line">            <span class="keyword">if</span>(lsum == sum - lsum + nums[i])&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Initialize.初始化数组.</span></span><br><span class="line">        <span class="keyword">int</span>[] nums = &#123;<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line"><span class="comment">//        int[] nums = &#123;-1,-1,-1,0,1,1&#125;;</span></span><br><span class="line">        <span class="comment">// 调用方法一：</span></span><br><span class="line">        <span class="keyword">int</span> result1 = pivotIndexSolution1(nums);</span><br><span class="line">        System.out.println(<span class="string">"The first method result is:"</span> + result1);</span><br><span class="line">        <span class="comment">// 调用方法二：</span></span><br><span class="line">        <span class="keyword">int</span> result2 = pivotIndexSolution2(nums);</span><br><span class="line">        System.out.println(<span class="string">"The second method result is:"</span> + result2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/data-structure/" rel="tag"><i class="fa fa-tag"></i> data structure</a>
+          
+            <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/array/" rel="tag"><i class="fa fa-tag"></i> array</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-08/redis-study-3/" rel="next" title="Redis学习笔记（三）——Redis键(key)">
+                <i class="fa fa-chevron-left"></i> Redis学习笔记（三）——Redis键(key)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-09/data-structure-array-LargestNumber/" rel="prev" title="LeetCode之数据结构——数组demo2">
+                LeetCode之数据结构——数组demo2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b73a425351412ad" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/timg.jpg"
+                alt="zrxJuly" />
+            
+              <p class="site-author-name" itemprop="name">zrxJuly</p>
+              <p class="site-description motion-element" itemprop="description">愿有前程可奔赴，亦有岁月可回首</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zrxJuly" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/rongxiang111" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zrxjuly97@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/5774644382/" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://crossoverjie.top/" title="crossoverJie's Blog" target="_blank">crossoverJie's Blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://quinntian.xyz/" title="我在北纬36°" target="_blank">我在北纬36°</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组简介"><span class="nav-number">1.</span> <span class="nav-text">数组简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-Demo学习"><span class="nav-number">1.1.</span> <span class="nav-text">Array Demo学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态数组简介"><span class="nav-number">2.</span> <span class="nav-text">动态数组简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Array-Demo-学习"><span class="nav-number">2.1.</span> <span class="nav-text">Dynamic Array Demo 学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coding-Question-寻找数组的中心索引"><span class="nav-number">3.</span> <span class="nav-text">Coding Question:寻找数组的中心索引</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrxJuly</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'b8nUouvy4yf6uoPnw9hwLVcK-MdYXbMMI',
+        appKey: 'TKNXqcXh74H80vQCBWAKJHCF',
+        placeholder: '来吐槽一下吧~~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
