@@ -85,19 +85,19 @@
 
 
 
-<meta name="description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类型，strin">
+<meta name="description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串概念及基本用法string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类">
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis学习笔记（二）——Redis数据类型">
+<meta property="og:title" content="Redis系列（二）——Redis数据类型">
 <meta property="og:url" content="https://zrxjuly.github.io/2018-08/redis-study-2/index.html">
 <meta property="og:site_name" content="zrxJuly&#39;s Blog">
-<meta property="og:description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类型，strin">
+<meta property="og:description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串概念及基本用法string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://zrxjuly.github.io/2018-08/redis-study-2/redis-2.jpg">
-<meta property="og:updated_time" content="2020-02-23T14:23:09.350Z">
+<meta property="og:updated_time" content="2020-03-03T03:30:55.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis学习笔记（二）——Redis数据类型">
-<meta name="twitter:description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类型，strin">
+<meta name="twitter:title" content="Redis系列（二）——Redis数据类型">
+<meta name="twitter:description" content="Redis支持5种数据类型：  string：字符串 hash：哈希 list：列表 set： 集合 zset：有序集合（sorted set）   String：字符串概念及基本用法string是Redis最基本的类型，一个key对应一个value；string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。string类型是Redis最基本的数据类">
 <meta name="twitter:image" content="https://zrxjuly.github.io/2018-08/redis-study-2/redis-2.jpg">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>Redis学习笔记（二）——Redis数据类型 | zrxJuly's Blog</title>
+  <title>Redis系列（二）——Redis数据类型 | zrxJuly's Blog</title>
   
 
 
@@ -169,7 +169,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">一只追求梦想的程序媛</p>
+        <p class="site-subtitle">成长中的产品媛</p>
       
   </div>
 
@@ -306,9 +306,9 @@
     <link itemprop="mainEntityOfPage" href="https://zrxjuly.github.io/2018-08/redis-study-2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrxJuly">
+      <meta itemprop="name" content="阿媛Erin">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/timg.jpg">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis学习笔记（二）——Redis数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">Redis系列（二）——Redis数据类型</h1>
         
 
         <div class="post-meta">
@@ -415,18 +415,45 @@
 <li>set： 集合</li>
 <li>zset：有序集合（sorted set） </li>
 </ul>
-<h2 id="String：字符串"><a href="#String：字符串" class="headerlink" title="String：字符串"></a>String：字符串</h2><p>string是Redis最基本的类型，一个key对应一个value；<br>string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。<br>string类型是Redis最基本的数据类型，string类型的值最大能存储512MB。</p>
+<h2 id="String：字符串"><a href="#String：字符串" class="headerlink" title="String：字符串"></a>String：字符串</h2><h3 id="概念及基本用法"><a href="#概念及基本用法" class="headerlink" title="概念及基本用法"></a>概念及基本用法</h3><p>string是Redis最基本的类型，一个key对应一个value；<br>string类型是二进制安全的，即Redis的string可包含任何数据。比如jpg图片或者序列化的对象。<br>string类型是Redis最基本的数据类型，string类型的值最大能存储512MB。</p>
 <blockquote>
 <p>语法格式：<br>set key value<br>get key</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set name &apos;zrx&apos;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get name</span><br><span class="line">&quot;zrx&quot;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>Redis 命令不区分大小写。上面例子 键为<code>name</code>，值为<code>zrx</code>。使用了set先给name赋值为’zrx’，再使用了get取键对应的值。  </p>
+<p>Redis 命令不区分大小写，记录的数据是区分大小写的。上面例子 键为<code>name</code>，值为<code>zrx</code>。使用了set先给name赋值为’zrx’，再使用了get取键对应的值。通常用SET command和GET command来设置和获取字符串值。</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="Hash：哈希"><a href="#Hash：哈希" class="headerlink" title="Hash：哈希"></a>Hash：哈希</h2><p>Hash是键值对集合，适用于存储对象。Redis哈希（散列）是字符串字段和字符串值之间的映射。</p>
+<h3 id="Redis原子递增"><a href="#Redis原子递增" class="headerlink" title="Redis原子递增"></a>Redis原子递增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set counter 1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr counter</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; incr counter</span><br><span class="line">(integer) 3</span><br></pre></td></tr></table></figure>
+
+<p><code>INCR</code> 命令将字符串解析成整型，将其+1，最后将结果保存为新的字符串值。类似命令有<code>INCRBY</code>,<code>DECR</code>,<code>DECRBY</code>.</p>
+<p><code>INCR</code>原子操作，即使多个客户端对同一个key发出INCR命令，也绝不会导致竞争的情况。即不会出现客户端1和2同时读出10，当分别执行INCR时返回的最终肯定是12。</p>
+<p><code>GETSET</code>：为key设置新值并返回原值。用途，例如：每当有新用户访问系统时，用INCR操作一个Redis key。如果希望每小时对这个信息收集一次，就可以用<code>GETSET key value</code>命令来给这个key赋值0并读取原值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set counter 1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr counter</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; incr counter</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; incr counter</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; getset counter 0</span><br><span class="line">&quot;4&quot;</span><br><span class="line">127.0.0.1:6379&gt; get counter</span><br><span class="line">&quot;0&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对多个key的操作"><a href="#对多个key的操作" class="headerlink" title="对多个key的操作"></a>对多个key的操作</h3><p>为减少等待时间，可以一次存储或获取多个key对应的值，使用<code>MSET</code>和<code>MGET</code>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mset a 1 b 2 c 3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; mget a b c</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;2&quot;</span><br><span class="line">3) &quot;3&quot;</span><br></pre></td></tr></table></figure>
+
+<p><code>MGET</code>命令返回由值组成的数组。</p>
+<h3 id="修改或查询键空间"><a href="#修改或查询键空间" class="headerlink" title="修改或查询键空间"></a>修改或查询键空间</h3><ul>
+<li><code>EXISTS</code>：返回1表示给定key的值存在，返回0表示给定key的值不存在。<br><code>DEL</code>：删除key对应的值，返回1表示被删除(值存在)，返回0表示没被删除(值不存在)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set myblog zrxjuly</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; exists myblog</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; del myblog</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; exists myblog</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>TYPE</code>命令返回key对应的值的存储类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set myblog zrxjuly</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; type myblog</span><br><span class="line">string</span><br><span class="line">127.0.0.1:6379&gt; del myblog</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; type myblog</span><br><span class="line">none</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis超时"><a href="#Redis超时" class="headerlink" title="Redis超时"></a>Redis超时</h3><p>与值类型无关的Redis特性：超时。可以对key设置一个超时时间，当这个时间到达后会被删除。精度可以使用毫秒或秒。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set key zrxjuly</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; expire key 5</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; get key</span><br><span class="line">&quot;zrxjuly&quot;</span><br><span class="line">127.0.0.1:6379&gt; get key</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<p><code>PERSIST</code>：去除超时时间<br><code>SET KEY value EX time</code>：在创建值的时候设置超时时间。<br><code>TTL</code>：查看key对应的值剩余存活时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set myblog zrxjuly ex 10</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl myblog</span><br><span class="line">(integer) 8</span><br><span class="line">127.0.0.1:6379&gt; ttl myblog</span><br><span class="line">(integer) -2</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hash：哈希"><a href="#Hash：哈希" class="headerlink" title="Hash：哈希"></a>Hash：哈希</h2><p>Hash是键值对集合，类似于java中的Map，适用于存储对象。Redis哈希（散列）是字符串字段和字符串值之间的映射。</p>
 <blockquote>
 <p>语法格式：<br>hmset key field value<br>hget key field</p>
 </blockquote>
@@ -436,7 +463,13 @@
 <blockquote>
 <p>每个hash可以存储2<sup>32</sup>-1个键值对。</p>
 </blockquote>
-<h2 id="List：列表"><a href="#List：列表" class="headerlink" title="List：列表"></a>List：列表</h2><p>Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到列表的头部（左边）或尾部（右边）。</p>
+<p>再看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hmset userInfo name zrxJuly sex female age 20</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hmget userInfo name</span><br><span class="line">1) &quot;zrxJuly&quot;</span><br><span class="line">127.0.0.1:6379&gt; hmget userInfo name sex age</span><br><span class="line">1) &quot;zrxJuly&quot;</span><br><span class="line">2) &quot;female&quot;</span><br><span class="line">3) &quot;20&quot;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子我们可以理解为userInfo对象有name、sex、age三个属性。<br>同样，对单独的属性，也会有一些操作，如，返回年龄+1后的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hincrby userInfo age 1</span><br><span class="line">(integer) 21</span><br></pre></td></tr></table></figure>
+
+<h2 id="List：列表"><a href="#List：列表" class="headerlink" title="List：列表"></a>List：列表</h2><p>Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到列表的头部（LEFT）或尾部（RIGHT）。也可以从LIST的头部（LIST）或者尾部（RIGHT）弹出一个元素。<br>Redis列表通过<strong>链接列表</strong>实现。使用<code>LPUSH</code>命令将一个新元素添加到包含10个元素的列表头的速度与向包含1000万个元素的列表头添加元素的速度相同。所以，对于数据库系统来说，能够以非常快的方式将元素添加到一个非常长的列表中是至关重要的。</p>
 <blockquote>
 <p>语法格式：<br>lpush key member</p>
 </blockquote>
@@ -455,13 +488,13 @@
 <blockquote>
 <p>集合中最大的成员数为2<sup>32</sup>-1</p>
 </blockquote>
-<h2 id="zset：有序集合（sorted-set）"><a href="#zset：有序集合（sorted-set）" class="headerlink" title="zset：有序集合（sorted set）"></a>zset：有序集合（sorted set）</h2><p>添加元素到集合，若元素在集合中存在则更新对应score。</p>
+<h2 id="zset：有序集合（sorted-set）"><a href="#zset：有序集合（sorted-set）" class="headerlink" title="zset：有序集合（sorted set）"></a>zset：有序集合（sorted set）</h2><p>和set一样，也是string类型的元素的集合。zset中的每个元素都会关联一个double类型的分数，zset中成员都是唯一的，但是所关联的分数可以重复.添加元素到集合，若元素在集合中存在则更新对应score。</p>
 <blockquote>
 <p>语法格式<br>zadd key score member  </p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd zname 0 zs</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd zname 0 ls</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd zname 0 ww</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; ZRANGEBYSCORE zname 0 10</span><br><span class="line">1) &quot;ls&quot;</span><br><span class="line">2) &quot;ww&quot;</span><br><span class="line">3) &quot;zs&quot;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.runoob.com/redis/redis-install.html" target="_blank" rel="noopener">http://www.runoob.com/redis/redis-install.html</a><br><a href="https://www.yiibai.com/redis/redis_quick_guide.html" target="_blank" rel="noopener">https://www.yiibai.com/redis/redis_quick_guide.html</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.redis.cn/topics/data-types-intro.html#strings" target="_blank" rel="noopener">http://www.redis.cn/topics/data-types-intro.html#strings</a><br><a href="http://www.runoob.com/redis/redis-install.html" target="_blank" rel="noopener">http://www.runoob.com/redis/redis-install.html</a><br><a href="https://www.yiibai.com/redis/redis_quick_guide.html" target="_blank" rel="noopener">https://www.yiibai.com/redis/redis_quick_guide.html</a></p>
 
       
     </div>
@@ -493,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018-08/redis-study-1/" rel="next" title="Redis学习笔记（一）——Redis安装">
-                <i class="fa fa-chevron-left"></i> Redis学习笔记（一）——Redis安装
+              <a href="/2018-08/redis-study-1/" rel="next" title="Redis系列（一）——Redis安装">
+                <i class="fa fa-chevron-left"></i> Redis系列（一）——Redis安装
               </a>
             
           </div>
@@ -503,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018-08/redis-study-3/" rel="prev" title="Redis学习笔记（三）——Redis键(key)">
-                Redis学习笔记（三）——Redis键(key) <i class="fa fa-chevron-right"></i>
+              <a href="/2018-08/redis-study-3/" rel="prev" title="Redis系列（三）——Redis键命令(key)">
+                Redis系列（三）——Redis键命令(key) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,9 +613,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/timg.jpg" alt="zrxJuly">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="阿媛Erin">
             
-              <p class="site-author-name" itemprop="name">zrxJuly</p>
+              <p class="site-author-name" itemprop="name">阿媛Erin</p>
               <p class="site-description motion-element" itemprop="description">愿有前程可奔赴，亦有岁月可回首</p>
           </div>
 
@@ -604,7 +637,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -615,7 +648,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -679,7 +712,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://quinntian.xyz/" title="我在北纬36°" target="_blank">我在北纬36°</a>
+                    <a href="https://quinntian.com/" title="我在北纬36°" target="_blank">我在北纬36°</a>
                   </li>
                 
               </ul>
@@ -701,7 +734,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String：字符串"><span class="nav-number">1.</span> <span class="nav-text">String：字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash：哈希"><span class="nav-number">2.</span> <span class="nav-text">Hash：哈希</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List：列表"><span class="nav-number">3.</span> <span class="nav-text">List：列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set：集合"><span class="nav-number">4.</span> <span class="nav-text">Set：集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset：有序集合（sorted-set）"><span class="nav-number">5.</span> <span class="nav-text">zset：有序集合（sorted set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String：字符串"><span class="nav-number">1.</span> <span class="nav-text">String：字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念及基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">概念及基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis原子递增"><span class="nav-number">1.2.</span> <span class="nav-text">Redis原子递增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对多个key的操作"><span class="nav-number">1.3.</span> <span class="nav-text">对多个key的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改或查询键空间"><span class="nav-number">1.4.</span> <span class="nav-text">修改或查询键空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis超时"><span class="nav-number">1.5.</span> <span class="nav-text">Redis超时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash：哈希"><span class="nav-number">2.</span> <span class="nav-text">Hash：哈希</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List：列表"><span class="nav-number">3.</span> <span class="nav-text">List：列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set：集合"><span class="nav-number">4.</span> <span class="nav-text">Set：集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset：有序集合（sorted-set）"><span class="nav-number">5.</span> <span class="nav-text">zset：有序集合（sorted set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -725,7 +758,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">zrxJuly</span>
+  <span class="author" itemprop="copyrightHolder">阿媛Erin</span>
 
   
 </div>
